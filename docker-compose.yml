@@ -1,0 +1,7 @@
+version: '2.2'
+
+services:
+  golang_deps:
+    image: azuracast/azuracast_golang_deps:latest
+    build:
+      context: .
