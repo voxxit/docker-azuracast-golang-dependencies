@@ -13,7 +13,8 @@ RUN go get -d github.com/drakkan/sftpgo \
     && cd src/github.com/drakkan/sftpgo \
     && go build -i -ldflags "-s -w -X github.com/drakkan/sftpgo/utils.commit=`git describe --always --dirty` -X github.com/drakkan/sftpgo/utils.date=`date -u +%FT%TZ`" -o sftpgo \
     && chmod a+x sftpgo \
-    && mv sftpgo /usr/local/bin
+    && mv sftpgo /usr/local/bin \
+    && rm -rf /go/src
 
 # Installs into:
 # - /usr/local/bin/sftpgo
@@ -32,7 +33,8 @@ RUN apt-get update \
     && cd jobber \
     && make check \
     && make install DESTDIR=/ \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /go/src
 
 # Installs into:
 # - /usr/local/bin/jobber
@@ -49,7 +51,8 @@ RUN go get -d github.com/jwilder/dockerize \
     && cd src/github.com/jwilder/dockerize \
     && go build -i \
     && chmod a+x dockerize \
-    && mv dockerize /usr/local/bin
+    && mv dockerize /usr/local/bin \
+    && rm -rf /go/src
 
 # Installs into:
 # - /usr/local/bin/dockerize
@@ -65,7 +68,8 @@ RUN go get -d github.com/spiral/roadrunner \
     && go mod download \
     && make \
     && chmod a+x rr \
-    && mv rr /usr/local/bin
+    && mv rr /usr/local/bin \
+    && rm -rf /go/src
 
 # Installs into:
 # - /usr/local/bin/rr
