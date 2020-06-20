@@ -53,3 +53,19 @@ RUN go get -d github.com/jwilder/dockerize \
 
 # Installs into:
 # - /usr/local/bin/dockerize
+
+#
+# Build Roadrunner
+# 
+
+WORKDIR /go
+
+RUN go get -d github.com/spiral/roadrunner \
+    && cd src/github.com/spiral/roadrunner \
+    && go mod download \
+    && make \
+    && chmod a+x rr \
+    && mv rr /usr/local/bin
+
+# Installs into:
+# - /usr/local/bin/rr
